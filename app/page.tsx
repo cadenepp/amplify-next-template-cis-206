@@ -7,6 +7,8 @@ import "./../app/app.css";
 import { Amplify } from "aws-amplify";
 import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
+import { Authenticator } from '@aws-amplify/ui-react';
+import Link from "next/link";
 
 Amplify.configure(outputs);
 
@@ -19,6 +21,11 @@ export default function App() {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
     });
+  }
+
+    
+  function deleteTodo(id: string) {
+    client.models.Todo.delete({ id })
   }
 
   useEffect(() => {
@@ -37,7 +44,7 @@ export default function App() {
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
+          <li onClick={() => deleteTodo(todo.id)} key={todo.id}>{todo.content}</li>
         ))}
       </ul>
       <div>
@@ -47,6 +54,11 @@ export default function App() {
           Review next steps of this tutorial.
         </a>
       </div>
+      <Authenticator>
+        <div>
+          <Link href="/NewPage">Click Here</Link>
+        </div>
+      </Authenticator>
     </main>
   );
 }
