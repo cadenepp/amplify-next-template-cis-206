@@ -54,6 +54,7 @@ export default function App() {
           Review next steps of this tutorial.
         </a>
       </div>
+      <Link href="/About">About</Link>
       <Authenticator>
         <div>
           <Link href="/NewPage">Click Here</Link>
