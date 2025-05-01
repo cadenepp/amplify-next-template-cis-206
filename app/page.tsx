@@ -57,7 +57,7 @@ export default function App() {
       <Link href="/About">About</Link>
       <Authenticator>
         <div>
-          <Link href="/NewPage">Click Here</Link>
+          <Link href="/SearchStock">Seach Stocks</Link>
         </div>
       </Authenticator>
     </main>
